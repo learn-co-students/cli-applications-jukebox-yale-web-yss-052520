@@ -13,16 +13,13 @@ end
 def play(songs)
   puts "Please enter a song name or number:"
   input = gets.strip
-  input = input.to_i if input.length == 1
-  
-  song_name = nil
-  if input.is_a? String
-    song_name = input if songs.include? (input)
+  if input.to_i > 0 && input.to_i < 10
+    puts "Playing #{songs[input.to_i-1]}"
+  elsif songs.include?(input)
+    puts "Playing #{input}"
   else 
-    song_name = songs[input-1] if input > 0 && input < 10
+    puts "Invalid input, please try again"
   end 
-  
-  song_name ? puts("Playing #{song_name}") : puts("Invalid input, please try again")
 end 
 
 def exit_jukebox
